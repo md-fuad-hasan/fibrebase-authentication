@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import Navigation from "./Navbar/Navbar";
 import { Navigate, Route, Routes } from "react-router";
 import Contact from "./Body/Contact/Contact";
 import About from "./Body/About/About";
 import Landing from "./Body/Landing/Landing";
 
-class Main extends Component{
-    render(){
+const Main =()=>{
         return(
             <div>
                 <Navigation />
@@ -14,7 +13,7 @@ class Main extends Component{
                 <Routes>
                     
                     <Route path="/home" element={<Landing />} />
-                    <Route path="/contact" element={<Contact animate={true} hi="Hello"/>} />
+                    <Route path="/contact" element={<Contact animate={true}/>} />
                     <Route path="/about" element={<About />} />
                     <Route path="*" element={<Navigate to="/home" />} />
 
@@ -23,7 +22,7 @@ class Main extends Component{
 
             </div>
         );
-    }
+    
 }
 
 

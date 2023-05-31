@@ -1,0 +1,25 @@
+.all{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+.formContainer{
+    width: 500px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #d0c6c6, -5px -5px 10px #eee;
+    padding: 1.25rem 0;
+
+}
+.form{
+    padding: 1rem 0;
+    width: 80%;
+    margin: auto;
+}
+.signup{
+    width: 100%;
+}
+.show-error{
+    color: red;
+    text-align: start;
+}

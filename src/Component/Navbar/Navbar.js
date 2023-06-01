@@ -1,22 +1,46 @@
-import React, {Component} from "react";
+import React, { useState} from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Collapse, Nav, NavItem, Navbar, NavbarBrand, NavbarToggler } from "reactstrap";
 
 
-class Navigation extends Component{
+const Navigation= ()=>{
 
-    state = {
-        isOpen : false
-    }
-
-    render(){
-
+    const [isOpen,setIsOpen] = useState(false);
+    const token = useSelector(state=>state.token);
 
         const toggle = ()=>{
-            this.setState({
-                isOpen: !this.state.isOpen
-            })
+            setIsOpen(!isOpen)
         }
+
+        let links = null;
+        if(token===null){
+            links = <Nav className="me-auto" navbar >
+                <NavItem >
+                <Link to="/login" className="nav-link">Login</Link>
+                </NavItem>
+                <NavItem >
+                <Link to="/signup" className="nav-link">SignUp</Link>
+                </NavItem>
+                
+            </Nav>
+        }else{
+            links = <Nav className="me-auto" navbar >
+                <NavItem>
+                <Link to="/home" className="nav-link">Home</Link>
+                </NavItem>
+                <NavItem>
+                <Link to="/contact" className="nav-link">Contact</Link>
+                </NavItem>
+                <NavItem>
+                <Link to="/about" className="nav-link">About</Link>
+                </NavItem>
+                <NavItem >
+                <Link to="/logout" className="nav-link">Logout</Link>
+                </NavItem>
+            </Nav>
+        }
+        
 
         return(
             <div>
@@ -25,26 +49,9 @@ class Navigation extends Component{
                   
                   <NavbarBrand href="/">BrandName</NavbarBrand>
                   <NavbarToggler onClick={toggle} />
-                  <Collapse isOpen={this.state.isOpen} navbar>
-                  <Nav className="me-auto" navbar >
-                      <NavItem>
-                      <Link to="/home" className="nav-link">Home</Link>
-                      </NavItem>
-                      <NavItem>
-                      <Link to="/contact" className="nav-link">Contact</Link>
-                      </NavItem>
-                      <NavItem>
-                      <Link to="/about" className="nav-link">About</Link>
-                      </NavItem>
-                      <NavItem>
-                        <Link to="/login" className="nav-link">Login</Link>
-                      </NavItem>
-                      <NavItem>
-                        <Link to="/signup" className="nav-link">SignUp</Link>
-                      </NavItem>
-                      
-                  </Nav>
-
+                  <Collapse isOpen={isOpen} navbar>
+                  
+                    {links}
                   </Collapse>
              
               
@@ -53,7 +60,7 @@ class Navigation extends Component{
 
             </div>
         );
-    }
+    
 }
 
 export default Navigation;

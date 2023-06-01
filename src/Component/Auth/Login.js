@@ -1,8 +1,11 @@
 import { Formik } from "formik";
 import React from "react";
 import '../Auth/Auth.css';
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actionCreators";
 
 const Login = ()=>{
+    const dispatch = useDispatch();
     return(
         <div className="all">
             <Formik
@@ -15,7 +18,7 @@ const Login = ()=>{
                 }
                 onSubmit={
                     (values)=>{
-                        console.log(values);
+                        dispatch(login(values.email,values.password));
                     }
                 }
                 validate={
@@ -34,7 +37,7 @@ const Login = ()=>{
                             errors.password = "At least 8 character"
                         }
                         
-                        console.log(errors);
+                        
                         return errors;
                     }
                 }

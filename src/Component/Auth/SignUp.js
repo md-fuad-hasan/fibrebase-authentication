@@ -1,8 +1,11 @@
 import { Formik } from "formik";
 import React from "react";
 import '../Auth/Auth.css';
+import { useDispatch } from "react-redux";
+import { signup } from "../../redux/actionCreators";
 
 const SignUp = ()=>{
+    const dispatch = useDispatch();
     return(
         <div className="all">
             <Formik
@@ -15,7 +18,7 @@ const SignUp = ()=>{
                 }
                 onSubmit={
                     (values)=>{
-                        console.log(values);
+                        dispatch(signup(values.email,values.password));
                     }
                 }
                 validate={
@@ -39,7 +42,6 @@ const SignUp = ()=>{
                         else if(values.password !== values.confirmedPassword){
                             errors.confirmedPassword = "Password doesn't match"
                         }
-                        console.log(errors);
                         return errors;
                     }
                 }
